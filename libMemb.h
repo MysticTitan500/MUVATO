@@ -86,6 +86,30 @@ public:
                 return true;
             }
         }
+            //create sibling
+        void createSibling(string newName){
+            string parName = getParent();
+            int curLev = getLevel();
+
+            libMemb child;
+            child.setTitle(parName+"_"+newName);
+            child.setParent(parName);
+            child.setLevel(curLev);
+
+            //sets item number of new child
+            if(hasSiblings()== false){
+                child.setItemNum(1);
+                child.setSiblings(0);
+            }
+            else{
+                //set to siblings+1 and adds sibling to counter
+                child.setItemNum(getSiblings()+1);
+                child.setSiblings(getSiblings()+1);
+            }
+
+
+            addKid();
+        }
             //create children
         void createChild(string newName){
             string parName = getParent();
@@ -93,7 +117,7 @@ public:
 
             libMemb child;
             child.setTitle(parName+"_"+newName);
-            child.setParent(getTitle());
+            child.setParent(parName);
             child.setLevel(curLev+1);
 
             //sets item number of new child
@@ -105,18 +129,9 @@ public:
                 child.setItemNum(getSiblings()+1);
             }
 
-            //alters total number of siblings
-            if(child.getItemNum()==1){
-                child.setSiblings(0);
-            }
-            else{
-                child.setSiblings(child.getSiblings()+1);
-            }
-
-
                 addKid();
         }
-            //returns list of children as strings
+        /*    //returns list of children as strings
         void returnKids(){
             int childCt = getKid();
             bool kidSol = haveKids();
@@ -129,7 +144,7 @@ public:
 
                 }
             }
-        }
+        }  */
     }
 
 
